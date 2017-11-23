@@ -1,1 +1,1 @@
-from Brusselator.py import *
+from Brusselator import *

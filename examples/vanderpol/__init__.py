@@ -1,1 +1,1 @@
-from vanderpol.py import *
+from vanderpol import *
