@@ -88,6 +88,7 @@ def simulate(g, initCondition, timeHorizon, guard, simFuc, reseter, initialMode)
 			transiteTime = remainTime
 			curGuardStr = None
 			curResetStr = None
+			curSuccessor = None
 		else:
 			# Randomly pick a path and time to transit
 			curSuccessor = random.choice(curSuccessors)
