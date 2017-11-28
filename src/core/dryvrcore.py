@@ -97,14 +97,17 @@ def simulate(g, initCondition, timeHorizon, guard, simFuc, reseter, initialMode)
 		curLabel = g.vs[curVertex]['label']
 
 		if len(curSuccessors) == 0:
-			curSimResult = simFuc(curLabel, initCondition, transiteTime)
-			# Some model return numpy array, convert to list
-			if isinstance(curSimResult,numpy.ndarray):
-				curSimResult = curSimResult.tolist()
-			initCondition, trunckedResult = guard.guardSimuTube(
-				curSimResult,
-				None
-			)
+			transiteTime = remainTime
+			curGuardStr = None
+			curResetStr = None
+			curSuccessor = None
+		else:
+			# Randomly pick a path and time to transit
+			curSuccessor = random.choice(curSuccessors)
+			edgeID = g.get_eid(curVertex,curSuccessor)
+			curGuardStr = g.es[edgeID]['label']
+			curResetStr = g.es[edgeID]['resets']
+			transiteTime = remainTime
 
 		else:
 			# First find all possible transition
